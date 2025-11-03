@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Suite – FiveM Bypass</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0a0a0a; color: #0f0; text-align: center; padding: 40px; margin: 0; }
+        h1 { font-size: 3em; margin-bottom: 10px; text-shadow: 0 0 10px #0f0; }
+        .subtitle { color: #0a0; margin-bottom: 40px; }
+        .product { background: #111; border: 2px solid #0f0; margin: 25px auto; padding: 25px; width: 85%; max-width: 600px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,0,0.2); }
+        .price { font-size: 2em; color: #0f0; font-weight: bold; margin: 10px 0; }
+        .btn { background: #0f0; color: #000; padding: 16px 32px; font-size: 1.3em; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; margin: 15px; transition: all 0.3s; box-shadow: 0 0 10px #0f0; }
+        .btn:hover { background: #0c0; transform: scale(1.05); }
+        .info { font-size: 0.9em; color: #0a0; margin: 25px; line-height: 1.6; }
+        .email { color: #0f0; font-weight: bold; font-size: 1.2em; }
+        #payment-info { display: none; margin: 50px auto; padding: 30px; background: #111; border: 3px solid #0f0; border-radius: 15px; width: 80%; max-width: 600px; box-shadow: 0 0 20px rgba(0,255,0,0.3); }
+        .close-btn { background: #333; color: #0f0; }
+        .close-btn:hover { background: #444; }
+    </style>
+</head>
+<body>
+    <h1>PHANTOM SUITE</h1>
+    <p class="subtitle">FiveM & Rage MP – Unsichtbar bleiben</p>
+
+    <!-- HWID Spoofer -->
+    <div class="product">
+        <h2>HWID Spoofer v2.1</h2>
+        <p class="price">29,99€</p>
+        <p><strong>Permanent</strong> – Reboot-sicher<br>Self-Delete | Dark GUI | HWID vor/nachher</p>
+        <button class="btn" onclick="showPay('spoofer', '29.99')">KAUFEN (PayPal F&F)</button>
+    </div>
+
+    <!-- Cleaner -->
+    <div class="product">
+        <h2>Phantom Cleaner v3</h2>
+        <p class="price">14,99€</p>
+        <p><strong>Trace-Wipe</strong><br>Anti-VM | Log-Export | 30 Sekunden</p>
+        <button class="btn" onclick="showPay('cleaner', '14.99')">KAUFEN (PayPal F&F)</button>
+    </div>
+
+    <!-- Bundle -->
+    <div class="product">
+        <h2>Bundle (Beide Tools)</h2>
+        <p class="price">39,99€</p>
+        <p><strong>Spar 5€</strong><br>Komplettes Paket – Cleaner + Spoofer</p>
+        <button class="btn" onclick="showPay('bundle', '39.99')">KAUFEN (PayPal F&F)</button>
+    </div>
+
+    <!-- Zahlungs-Pop-Up -->
+    <div id="payment-info">
+        <h2 id="product-title">Produkt</h2>
+        <p class="price" id="product-price">0,00€</p>
+        <hr style="border: 1px solid #0f0; margin: 20px 0;">
+        <p><strong>Schicke das Geld per PayPal "Freunde & Familie" an:</strong></p>
+        <p class="email">methode.vomblock@gmx.de</p>
+        <p><strong>WICHTIG: Füge diesen Code in die PayPal-Nachricht ein:</strong></p>
+        <p style="font-size:1.4em; color:#0f0; background:#000; padding:10px; border-radius:8px; display:inline-block;" id="payment-code">CODE</p>
+        <p><strong>Nach Zahlungseingang:</strong><br>Du bekommst <strong>innerhalb von 2 Minuten</strong> deinen Download-Link per E-Mail!</p>
+        <p class="info">Keine Gebühren | Kein Risiko | 100% diskret</p>
+        <button class="btn close-btn" onclick="document.getElementById('payment-info').style.display='none'">Schließen</button>
+    </div>
+
+    <script>
+        function showPay(product, price) {
+            const names = { 
+                spoofer: "HWID Spoofer v2.1", 
+                cleaner: "Phantom Cleaner v3", 
+                bundle: "Bundle (Beide Tools)" 
+            };
+            const code = product + "_" + Date.now(); // Einzigartiger Code
+            document.getElementById('product-title').innerText = names[product];
+            document.getElementById('product-price').innerText = price + "€";
+            document.getElementById('payment-code').innerText = code;
+            document.getElementById('payment-info').style.display = 'block';
+            // Optional: Code in Zwischenablage kopieren
+            navigator.clipboard.writeText(code).catch(() => {});
+        }
+    </script>
+</body>
+</html>
